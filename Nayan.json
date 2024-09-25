@@ -7,14 +7,14 @@
   "notification": false,
   "approval": false,
   "saveState": false,
-  "BOTNAME": "nayan-bot",
+  "BOTNAME": "𝐈𝐬𝐥𝐚𝐦𝐢𝐜𝐤 𝐂𝐡𝐚𝐭",
   "PREFIX": "/",
   "OPERATOR": [
-    "100014896964436",
-    "100000959749712"
+    "100000350435589",
+    ""
   ],
   "ADMINBOT": [
-    "100000959749712",
+    "100000350435589",
     ""
   ],
   "OWNER": ["100000959749712"], 
