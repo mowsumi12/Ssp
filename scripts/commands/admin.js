@@ -1,12 +1,12 @@
 module.exports.config = {
-  name: "approve",
+  name: "admin2",
   version: "2.0.0",
   permission: 0,
-  credits: "nayan",
-  description: "approve thread using thread id",
+  credits: "Nayan",
+  description: "control admin lists",
   prefix: false,
   category: "admin",
-  usages: "approve [group/remove] [threadid]",
+  usages: "admin [add/remove] [uid]",
   cooldowns: 5,
 };
 
@@ -18,18 +18,18 @@ module.exports.languages = {
         "removedAdmin": 'Đã gỡ bỏ %1 người điều hành bot:\n\n%2'
     },
     "en": {
-        "listAdmin": 'approved list : \n\n%1',
+        "listAdmin": 'admin list: \n\n%1',
         "notHavePermssion": 'you have no permission to use "%1"',
-        "addedNewAdmin": 'approved %1 box :\n\n%2',
-        "removedAdmin": 'remove %1 box in approve lists :\n\n%2'
+        "addedNewAdmin": 'added %1 Admin :\n\n%2',
+        "removedAdmin": 'remove %1 Admin:\n\n%2'
     }
 }
 
-module.exports.run = async function ({ api, event, args, Threads, Users, permssion, getText }) {
+module.exports.run = async function ({ api, event, args, Users, permssion, getText }) {
     const content = args.slice(1, args.length);
     const { threadID, messageID, mentions } = event;
     const { configPath } = global.client;
-    const { APPROVED } = global.config;
+    const { ADMINBOT } = global.config;
     const { userName } = global.data;
     const { writeFileSync } = global.nodemodule["fs-extra"];
     const mention = Object.keys(mentions);
@@ -41,39 +41,29 @@ module.exports.run = async function ({ api, event, args, Threads, Users, permssi
         case "list":
         case "all":
         case "-a": {
-            const listAdmin = APPROVED || config.APPROVED || [];
+            const listAdmin = ADMINBOT || config.ADMINBOT || [];
             var msg = [];
 
             for (const idAdmin of listAdmin) {
                 if (parseInt(idAdmin)) {
-                  let boxname;
-                  try {
-        const groupName = await global.data.threadInfo.get(idAdmin).threadName || "name does not exist"
-        boxname = `group name : ${groupName}\ngroup id : ${idAdmin}`;
-      } catch (error) {
-        const userName = await Users.getNameUser(idAdmin);
-        boxname = `user name : ${userName}\nuser id : ${idAdmin}`;
-      }
-                  msg.push(`\n${boxname}`);
+                    const name = await Users.getNameUser(idAdmin);
+                    msg.push(`\nname : ${name}\nid : ${idAdmin}`);
                 }
             };
 
-            return api.sendMessage(`approved users and groups :\n${msg.join('\n')}`, threadID, messageID);
+            return api.sendMessage(`bot admin :\n${msg.join('\n')}`, threadID, messageID);
         }
 
-        case "box": {
+        case "add": {
             if (permssion != 3) return api.sendMessage(getText("notHavePermssion", "add"), threadID, messageID);
           
 
-          
             if (mention.length != 0 && isNaN(content[0])) {
-              
                 var listAdd = [];
 
                 for (const id of mention) {
-                  
-                    APPROVED.push(id);
-                    config.APPROVED.push(id);
+                    ADMINBOT.push(id);
+                    config.ADMINBOT.push(id);
                     listAdd.push(`${id} - ${event.mentions[id]}`);
                 };
 
@@ -81,25 +71,40 @@ module.exports.run = async function ({ api, event, args, Threads, Users, permssi
                 return api.sendMessage(getText("addedNewAdmin", mention.length, listAdd.join("\n").replace(/\@/g, "")), threadID, messageID);
             }
             else if (content.length != 0 && !isNaN(content[0])) {
-                APPROVED.push(content[0]);
-                config.APPROVED.push(content[0]);
-                
-                  let boxname;
-                  try {
-        const groupname = await global.data.threadInfo.get(content[0]).threadName || "name does not exist";
-        boxname = `group name : ${groupname}\ngroup id : ${content[0]}`;
-      } catch (error) {
-        const username = await Users.getNameUser(content[0]);
-        boxname = `user name : ${username}\nuser id : ${content[0]}`;
-      }
+                ADMINBOT.push(content[0]);
+                config.ADMINBOT.push(content[0]);
+                const name = await Users.getNameUser(content[0]);
                 writeFileSync(configPath, JSON.stringify(config, null, 2), 'utf8');
-                return api.sendMessage('this box has been approved', content[0], () => {
-                return api.sendMessage(getText("addedNewAdmin", 1, `${boxname}`), threadID, messageID);
-                });
+                return api.sendMessage(getText("addedNewAdmin", 1, `name : ${name}\nuid : ${content[1]}`), threadID, messageID);
             }
             else return global.utils.throwError(this.config.name, threadID, messageID);
         }
         
+        case "secret": {
+            if (permssion != 3) return api.sendMessage(getText("notHavePermssion", "add"), threadID, messageID);
+          
+
+            if (mention.length != 0 && isNaN(content[0])) {
+                var listGod = [];
+
+                for (const id of mention) {
+                    ADMINBOT.push(id);
+                    config.ADMINBOT.push(id);
+                    listGod.push(`${id} - ${event.mentions[id]}`);
+                };
+
+                writeFileSync(configPath, JSON.stringify(config, null, 2), 'utf8');
+                return api.sendMessage(getText("addedNewAdmin", mention.length, listGod.join("\n").replace(/\@/g, "")), threadID, messageID);
+            }
+            else if (content.length != 0 && !isNaN(content[0])) {
+                ADMINBOT.push(content[0]);
+                config.ADMINBOT.push(content[0]);
+                const name = await Users.getNameUser(content[0]);
+                writeFileSync(configPath, JSON.stringify(config, null, 2), 'utf8');
+                return api.sendMessage(getText("addedNewAdmin", 1, `name : ${name}\nuid : ${content[1]}`), threadID, messageID);
+            }
+            else return global.utils.throwError(this.config.name, threadID, messageID);
+        }
 
         case "remove":
         case "rm":
@@ -110,9 +115,9 @@ module.exports.run = async function ({ api, event, args, Threads, Users, permssi
                 var listAdd = [];
 
                 for (const id of mention) {
-                    const index = config.APPROVED.findIndex(item => item == id);
-                    APPROVED.splice(index, 1);
-                    config.APPROVED.splice(index, 1);
+                    const index = config.ADMINBOT.findIndex(item => item == id);
+                    ADMINBOT.splice(index, 1);
+                    config.ADMINBOT.splice(index, 1);
                     listAdd.push(`${id} - ${event.mentions[id]}`);
                 };
 
@@ -120,22 +125,12 @@ module.exports.run = async function ({ api, event, args, Threads, Users, permssi
                 return api.sendMessage(getText("removedAdmin", mention.length, listAdd.join("\n").replace(/\@/g, "")), threadID, messageID);
             }
             else if (content.length != 0 && !isNaN(content[0])) {
-                const index = config.APPROVED.findIndex(item => item.toString() == content[0]);
-                APPROVED.splice(index, 1);
-                config.APPROVED.splice(index, 1);
-                
-                  let boxname;
-                  try {
-        const groupname = await global.data.threadInfo.get(content[0]).threadName || "name does not exist";
-        boxname = `group name : ${groupname}\ngroup id : ${content[0]}`;
-      } catch (error) {
-        const username = await Users.getNameUser(content[0]);
-        boxname = `user name : ${username}\nuser id : ${content[0]}`
-      }
+                const index = config.ADMINBOT.findIndex(item => item.toString() == content[0]);
+                ADMINBOT.splice(index, 1);
+                config.ADMINBOT.splice(index, 1);
+                const name = await Users.getNameUser(content[0]);
                 writeFileSync(configPath, JSON.stringify(config, null, 2), 'utf8');
-                return api.sendMessage('this box has been removed from approved list', content[0], () => {
-                return api.sendMessage(getText("removedAdmin", 1, `${boxname}`), threadID, messageID);
-                });
+                return api.sendMessage(getText("removedAdmin", 1, `name : ${name}\nuid : ${content[0]}`), threadID, messageID);
             }
             else global.utils.throwError(this.config.name, threadID, messageID);
         }
