@@ -2,7 +2,7 @@ module.exports.config = {
 	name: "getlink",
     version: "1.0.0",
     permission: 0,
-    credits: "nazrul",
+    credits: "nayan",
     description: "Get the URL Download from Video, Audio is sent from the group",
     prefix: true,
     category: "user",

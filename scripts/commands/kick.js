@@ -3,7 +3,7 @@ module.exports.config = {
   version: "1.0.0", 
   permssion: 2,
   prefix: true,
-  credits: "nazrul",
+  credits: "Mirai Team",
   description: "Xoá người bạn cần xoá khỏi nhóm bằng cách tag",
   category: "other", 
   usages: "[tag]", 
