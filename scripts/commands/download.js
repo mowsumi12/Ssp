@@ -4,7 +4,7 @@ config:{
   version: "1.0.0",
   permission: 0,
   prefix: true,
-  credits: "Nayan",
+  credits: "nazrul",
   description: "Social Media Video Downloader",
   category: "user",
   usages: [
