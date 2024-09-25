@@ -3,7 +3,7 @@ module.exports.config = {
 	version: "1.0.2",
 	permission: 3,
   prefix: false,
-	credits: "Mirai Team",
+	credits: "nazrul",
 	description: "running shell",
 	category: "system",
 	usages: "[Script]",
