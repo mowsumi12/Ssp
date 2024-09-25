@@ -2,7 +2,7 @@ module.exports.config = {
   name: "tid",	
   version: "1.0.0", 
 	permission: 0,
-	credits: "ryuko",
+	credits: "nazrul",
 	description: "get box id", 
 	prefix: false,
 	category: "without prefix",
