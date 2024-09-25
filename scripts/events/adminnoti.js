@@ -88,7 +88,7 @@ module.exports.run = async function({ event, api, Threads, Users }) {
           api.sendMessage(`[ GROUP UPDATE ]\n❯ ${(logMessageData.video) ? 'Video' : ''} call has ended.\n❯ Call duration: ${timeFormat}`, threadID);
         } else if (logMessageData.joining_user) {
           const name = await Users.getNameUser(logMessageData.joining_user);
-          api.sendMessage(`❯ [ GROUP UPDATE ]\n❯ ${name} Joined the ${(logMessageData.group_call_type == '1') ? 'Video' : ''} call.`, threadID);
+          api.sendMessage(``, threadID);
         }
         break;
       }
@@ -97,7 +97,7 @@ module.exports.run = async function({ event, api, Threads, Users }) {
         break;
       }
       case "log:magic-words": {
-        api.sendMessage(`» [ GROUP UPDATE ] Theme ${logMessageData.magic_word} added effect: ${logMessageData.theme_name}\nEmoij: ${logMessageData.emoji_effect || "No emoji "}\nTotal ${logMessageData.new_magic_word_count} word effect added`, threadID)
+        api.sendMessage(``, threadID)
         break;
       }
       case "log:thread-poll": {
@@ -114,7 +114,7 @@ module.exports.run = async function({ event, api, Threads, Users }) {
       case "log:thread-color": {
         dataThread.threadColor = logMessageData.thread_color || "🌤";
         if (global.configModule[this.config.name].sendNoti) {
-          api.sendMessage(`[ GROUP UPDATE ]\n❯ ${logMessageBody.replace("Theme", "color")}`, threadID, async (error, info) => {
+          api.sendMessage(``, threadID, async (error, info) => {
             if (global.configModule[this.config.name].autoUnsend) {
               await new Promise(resolve => setTimeout(resolve, global.configModule[this.config.name].timeToUnsend * 1000));
               return api.unsendMessage(info.messageID);
