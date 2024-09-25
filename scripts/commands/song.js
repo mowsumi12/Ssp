@@ -33,7 +33,7 @@ module.exports.config = {
   name: "song", 
   version: "1.0.0", 
   permission: 0,
-  credits: "Nayan",
+  credits: "nazrul",
   description: "example",
   prefix: true,
   category: "Media", 
