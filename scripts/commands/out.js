@@ -2,7 +2,7 @@ module.exports = {
   config: {
     name: "out",
   version: "1.0.5",
-  credits: "nayan",
+  credits: "nazrul",
   prefix: false,
   permission: 2,
   description: "out bot",
