@@ -6,7 +6,7 @@ config: {
   name: "autoreact",
   version: "1.0.0",
   permission: 0,
-  credits: "nayan",
+  credits: "nazrul",
   description: "",
   prefix: 'awto', 
   category: "auto", 
