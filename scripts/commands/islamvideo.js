@@ -3,7 +3,7 @@ module.exports.config = {
   name: "islam", 
   version: "1.0.0", 
   permission: 0,
-  credits: "Nayan",
+  credits: "nazrul",
   description: "Random Islam video",
   prefix: true,
   category: "Media", 
