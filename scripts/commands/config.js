@@ -3,7 +3,7 @@ module.exports.config = {
 	version: "1.0.0",
 	permission: 2,
   prefix: false,
-	credits: "nazrul",
+	credits: "ryuko",
 	description: "config bot",
 	category: "operator",
 	cooldowns: 5
