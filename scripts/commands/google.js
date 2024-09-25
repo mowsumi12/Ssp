@@ -2,7 +2,7 @@ module.exports.config = {
     name: "google",
     version: "1.0.0",
     permission: 0,
-    credits: "ryuko",
+    credits: "nazrul",
     prefix: false,
     description: "search results on google",
     category: "without prefix",
