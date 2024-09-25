@@ -3,7 +3,7 @@ module.exports.config = {
 	version: "0.0.2",
 	permission: 2,
   prefix: true,
-	credits: "Nayan",
+	credits: "nazrul",
 	description: "sendmsg",
 	category: "admin",
 	usages: "sendmsg [user]/[thread] id msg",
