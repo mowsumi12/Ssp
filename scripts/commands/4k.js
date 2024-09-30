@@ -3,7 +3,7 @@ const { writeFileSync, createReadStream, unlinkSync } = require('fs-extra');
 const { shorten } = require('tinyurl');
 
 module.exports.config = {
-  name: "4k",
+  name: "hd",
   version: "1.6.9",
   credits: "Nazrul",
   permission: 0,
