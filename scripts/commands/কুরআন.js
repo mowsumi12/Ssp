@@ -1,7 +1,7 @@
 module.exports.config = {
   name: "কুরআন",
   version: "0.0.1",
-  permission: 1,
+  permission: 0,
   credits: "Islmaick Chat",
   prefix: true,
   description: "কুরআনের ছোট ছোট সূরা",
