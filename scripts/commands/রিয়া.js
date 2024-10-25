@@ -3,7 +3,7 @@ module.exports.config = {
     version: "1.0.2",
     permission: 0,
     prefix: 'awto',
-    credits: "Emon",
+    credits: "nazrul",
     description: "ai",
     category: "botAi",
     usages: "bot+bot Help", 
@@ -23,7 +23,7 @@ module.exports.run = async function({ api, event, args, Users }) {
         }
         
         const encodedQuery = encodeURIComponent(query);
-        const apiUrl = `https://gemini-api-production-5fa9.up.railway.app/gemini?q=${encodedQuery}`;
+        const apiUrl = `https://www.noobs-api.000.pe/dipto/baby?text=${prompt}`;
         
         const res = await axios.get(apiUrl);
         
