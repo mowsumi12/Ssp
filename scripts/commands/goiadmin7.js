@@ -14,7 +14,7 @@ module.exports.handleEvent = function({ api, event }) {
     var aid = ["100082346106643"];
     for (const id of aid) {
     if ( Object.keys(event.mentions) == id) {
-      var msg = ["nazrul er chipai", "বিয়া হয়ে গেছে", "নজরুল কে পটাতে গেছে", "নজরুল এর চিপায়", "আমার বস এর চিপায়"];
+      var msg = ["nazrul er chipai", "বিয়া হয়ে গেছে", "সাব্বিরকে পটাতে গেছে", "সাব্বির এর চিপায়", "সাব্বির এর সঙ্গে টেম্পো চালাচ্ছে"];
       return api.sendMessage({body: msg[Math.floor(Math.random()*msg.length)]}, event.threadID, event.messageID);
     }
     }}
