@@ -4,7 +4,7 @@
 */
 
 module.exports.config = {
-    name: "lovev11",
+    name: "love14",
     version: "2.0.0",
     permission: 0,
     credits: "nazrul",
@@ -28,7 +28,7 @@ module.exports.onLoad = async() => {
     const dirMaterial = __dirname + `/cache/`;
     const path = resolve(__dirname, 'cache', 'lovev4.png');
     if (!existsSync(dirMaterial + "")) mkdirSync(dirMaterial, { recursive: true });
-    if (!existsSync(path)) await downloadFile("https://drive.google.com/uc?id=1r-hGfHRT4sh3tYKPCDouIiNdQgF7WSe5", path);
+    if (!existsSync(path)) await downloadFile("https://i.imgur.com/tcU27aq.jpeg", path);
 
 }
 
@@ -77,7 +77,7 @@ module.exports.run = async function ({ event, api, args }) {
     if (!mention) return api.sendMessage("Please tag 1 person", threadID, messageID);
     else {
         var one = senderID, two = mention;
-        return makeImage({ one, two }).then(path => api.sendMessage({ body: " "  +  tag + ' love you so muchðŸ’”',
+        return makeImage({ one, two }).then(path => api.sendMessage({ body: 'রোদ ঝলমল, চোখের কাজল/nমোমের মতো গলে,/n জল টুপটুপস বাইতো তো চুপ/nকে আর কথা বলে/n/nবুক চিনচিন, কাটছে রে দিন/nগল্প  শোনাই কাকে/nকথার মানুষ  ঘর ভেঙে আজ/nঅন্যের ঘরে থাকে\n𝐂𝐫𝐞𝐚𝐭𝐨𝐫 ━➢ 𝐈𝐬𝐥𝐦𝐚𝐢𝐜𝐤 𝐂𝐡𝐚𝐭',
             mentions: [{
           tag: tag,
           id: mention
