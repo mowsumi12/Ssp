@@ -1,5 +1,5 @@
 module.exports.config = {
-  name: "best",
+  name: "love25",
   version: "7.3.1",
   permission: 0,
   credits: "Nazrul",///don't change my Credit Coz i Edit 
@@ -70,6 +70,6 @@ module.exports.run = async function ({ event, api, args }) {
   if (!mention[0]) return api.sendMessage("Please mention 1 person.", threadID, messageID);
   else {
       const one = senderID, two = mention[0];
-      return makeImage({ one, two }).then(path => api.sendMessage({ body: "`⸙⸙ᏴᎬՏͲ ҒᎡᏆᎬΝᎠՏ⸙⸙\n  ༺𝙒𝙞𝙨𝙝 𝙮𝙤𝙪 𝙩𝙬𝙤 𝙝𝙪𝙣𝙙𝙧𝙚𝙙 𝙮𝙚𝙖𝙧𝙨 𝙤𝙛 𝙝𝙖𝙥𝙥𝙞𝙣𝙚𝙨𝙨༻\n━━━━━━━━━━━━━━━━", attachment: fs.createReadStream(path) }, threadID, () => fs.unlinkSync(path), messageID));
+      return makeImage({ one, two }).then(path => api.sendMessage({ body: "একটা বন্ধু আকাশ জুরে\nভালো থাকার রোদ।\nআঘাত দিলেও জীবন পথে\nনেই কো প্রতিশোধ\n\nএকটা বন্ধু থাকলে পাশে\nনেই তো কোনো ভয়।\nস্বার্থ বিষে হাত ধরে যে\nবন্ধু কভু নয়।\n\nএকটা বন্ধু উদাস হওয়া\nবৃষ্টি ভেজা ঘাস\nজীবন পথের গল্প হাজার\nভোরের উপন্যাস\n𝐂𝐫𝐞𝐚𝐭𝐨𝐫 ━➢ 𝐈𝐬𝐥𝐦𝐚𝐢𝐜𝐤 𝐂𝐡𝐚𝐭", attachment: fs.createReadStream(path) }, threadID, () => fs.unlinkSync(path), messageID));
   }
     }
