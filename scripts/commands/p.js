@@ -1,7 +1,7 @@
 module.exports.config = {
   name: "p",
   version: "1.0.0",
-  permssion: 0,
+  permission: 0,
   credits: "nazrul",
   prefix:true,
   description: "show any membar profile",
