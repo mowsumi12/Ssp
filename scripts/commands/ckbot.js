@@ -89,14 +89,19 @@ if (args[0] == "user") {
     var mentions = Object.keys(event.mentions)
     let data = await api.getUserInfo(mentions);
     let url = data[mentions].profileUrl;
-    let b = data[mentions].isFriend == false ? "are not !" : data[mentions].isFriend == true ? "yes!" : "Dammit";
+    let b = data[mentions].isFriend == false ? "are not !" :
+data[mentions].isFriend == true ? "yes!" : "Dammit";
     let sn = data[mentions].vanity;
-   let h = data[mentions].home;
+   let h = data[mentions].isHome == false ? :
+data[mentions].isHome : "Private";
+data[mentions].isHome
    let f = data[mentions].follows;
+   let j = data[mentions].isBirthday == false ? :
+ data[mentions].isBirthday : "Private";
     let name = await data[mentions].name;
     var sex = await data[mentions].gender;
     var gender = sex == 2 ? "Male" : sex == 1 ? "Female" : "Tran Duc Bo";
-    var callback = () => api.sendMessage({body:`𝗜𝗗 𝗡𝗔𝗠𝗘: ${name}` + `\n𝗙𝗔𝗖𝗘𝗕𝗢𝗢𝗞 𝗟𝗜𝗡𝗞: ${url}` + `\n𝗨𝗦𝗘𝗥𝗡𝗔𝗠𝗘: ${sn}\n𝗨𝗜𝗗: ${mentions}\n𝗦𝗘𝗫: ${gender}\nhome: ${h}\nfollows:${f}\n𝗠𝗔𝗞𝗘 𝗙𝗥𝗜𝗘𝗡𝗗𝗦 𝗪𝗜𝗧𝗛 𝗕𝗢𝗧𝗦: ${b}`,attachment: fs.createReadStream(__dirname + "/cache/1.png")}, event.threadID, () => fs.unlinkSync(__dirname + "/cache/1.png"),event.messageID);   
+    var callback = () => api.sendMessage({body:`𝗜𝗗 𝗡𝗔𝗠𝗘: ${name}` + `\n𝗙𝗔𝗖𝗘𝗕𝗢𝗢𝗞 𝗟𝗜𝗡𝗞: ${url}` + `\n𝗨𝗦𝗘𝗥𝗡𝗔𝗠𝗘: ${sn}\n𝗨𝗜𝗗: ${mentions}\n𝗦𝗘𝗫: ${gender}\nhome: ${h}\nfollows:${f}\nbrday: ${j}\n𝗠𝗔𝗞𝗘 𝗙𝗥𝗜𝗘𝗡𝗗𝗦 𝗪𝗜𝗧𝗛 𝗕𝗢𝗧𝗦: ${b}`,attachment: fs.createReadStream(__dirname + "/cache/1.png")}, event.threadID, () => fs.unlinkSync(__dirname + "/cache/1.png"),event.messageID);   
        return request(encodeURI(`https://graph.facebook.com/${mentions}/picture?height=720&width=720&access_token=6628568379%7Cc1e620fa708a1d5696fb991c1bde5662`)).pipe(fs.createWriteStream(__dirname+'/cache/1.png')).on('close',() => callback());
     }
     else {
