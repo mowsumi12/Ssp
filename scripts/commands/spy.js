@@ -18,7 +18,7 @@ module.exports = {
     cooldowns: 10,
   },
 
-  run: async function ({
+  module.exports.run: async function ({
     event,
     Users,
     api,
