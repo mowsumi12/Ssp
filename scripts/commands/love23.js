@@ -75,7 +75,6 @@ module.exports.run = async function ({ event, api, args }) {
   if (!mention[0]) return api.sendMessage("যার সাথে ফ্রেম বানাতে চান তাকে মেনশন করুন", threadID, messageID);
   else {
       const one = senderID, two = mention[0];
-      return makeImage({ one, two }).then(path => api.sendMessage({ body: "আমি প্রতিশোধ নিতে পছন্দ করি না 😏🥲
-শুধু গুরুত্ব কমিয়ে দূরত্ব বাড়িয়ে দেয়..🫠🥴🫣 ", attachment: fs.createReadStream(path) }, threadID, () => fs.unlinkSync(path), messageID));
+      return makeImage({ one, two }).then(path => api.sendMessage({ body: "আমি প্রতিশোধ নিত\nপছন্দ করি না\nশুধু গুরুত্ব কমিয়ে\nদূরত্ব বাড়িয়ে দেই", attachment: fs.createReadStream(path) }, threadID, () => fs.unlinkSync(path), messageID));
   }
 }
