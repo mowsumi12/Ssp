@@ -2,7 +2,7 @@ module.exports.config = {
   name: "profile", 
   version: "1.0.0", 
   permission: 0,
-  credits: "Nayan",
+  credits: "Nazrul",
   description: "example",
   prefix: true,
   category: "Fun", 
