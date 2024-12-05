@@ -24,7 +24,7 @@ start: async function({ nayan, events, args, lang}) {
     const request = require("request");
     const prompt = args.join(" ");
     const key = this.config.credits;
-    const apis = await axios.get('https://raw.githubusercontent.com/MOHAMMAD-NAYAN/Nayan/main/api.json')
+    const apis = await axios.get('https://www.noobs-api.000.pe/dipto/dalle?prompt=${prompt}&key=dipto008&cookies=1V9IbofqJdidRsZYgcbmK5w9vyNbnRBa0BquQW14NswLnG0cmIE_NPS8AMb93IOVg0cXs4rwSx5WlVFoD7zo_-eogjKIMpHlJNbAub-Uh9YuHtEqABtXzu9Z2bzLb_GL3tLbATGBrE_9C7irgTWoHxO2kLQ_zilqT2F_X01LZtY3yMCSCN0IQqnu1GDBiOcGCpYFokxGlT6-5Hhs3UXQ-0A')
   const n = apis.data.bing
     if(!prompt) return nayan.reply(lang('missing'), events.threadID, events.messageID)
 
