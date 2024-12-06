@@ -4,7 +4,7 @@ config: {
   version: "0.0.2",
   permission: 0,
   prefix: true,
-  credits: "nazrul",
+  credits: "Nayan",
   description: "",
   category: "admin",
   usages: "",
@@ -25,7 +25,7 @@ start: async function({ nayan, events, args, lang }) {
     const axios = require("axios")
     const request = require("request")
     const fs = require("fs-extra")
-  const { spotify} = require('nayan-server')
+  const { spotify} = require('nayan-api-server')
     const text = args.join(" ")
     nayan.reply(`searching for ${text}`, events.threadID, events.messageID);
     const res = await spotify(`${text}`);
