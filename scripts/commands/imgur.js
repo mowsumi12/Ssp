@@ -2,7 +2,7 @@ module.exports.config = {
   name: "imgur",
   version: "1.0.0",
   permission: 0,
-  credits: "nazrul",
+  credits: "Nayan",
   description: "",
   prefix: true,
   category: "user",
@@ -16,7 +16,7 @@ module.exports.config = {
 
 module.exports.run = async ({ api, event, args }) => {
   const axios = global.nodemodule['axios'];
-  const { imgur } = require("imgur-upload-api");
+  const { imgur } = require("nayan-imgur-upload-api");
 
 
   let linkanh = event.messageReply?.attachments[0]?.url || args.join(" ");
