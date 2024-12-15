@@ -2,18 +2,20 @@ const axios = require('axios');
 
 const baseApiUrl = async () => {
     const base = await axios.get(`https://raw.githubusercontent.com/Blankid018/D1PT0/main/baseApiUrl.json`);
+    console.log(base.data.api);
     return base.data.api;
 };
 
 module.exports.config = {
   name: "baby",
-  version: "6.9.9",
-  credits: "dipto",
-  cooldowns: 0,
+  version: "6.9.0",
   permission: 0,
+  credits: "dipto",
+  prefix: false,
+  countDown: 0,
   description: "better than all sim simi",
   category: "chat",
-  prefix: true,
+    Category: " chat",
   usages: `[anyMessage] OR\nteach [YourMessage] - [Reply1], [Reply2], [Reply3]... OR\nteach [react] [YourMessage] - [react1], [react2], [react3]... OR\nremove [YourMessage] OR\nrm [YourMessage] - [indexNumber] OR\nmsg [YourMessage] OR\nlist OR\nall OR\nedit [YourMessage] - [NewMessage]`,
 };
 
@@ -24,14 +26,14 @@ module.exports.run = async function ({ api, event, args, Users }) {
     const uid = event.senderID;
 
     if (!args[0]) {
-      const ran = ["Bolo baby", "hum", "type help baby", "type !baby hi"];
+      const ran = ["টুকি🫣🫣", "এই তো আমি আমারে কি দেখা জায়😜😜", "Hmm darling bolo😘😘", "এই তো আমি আছি তোমার বুকের মধ্যে 🙈🙈"];
       const r = ran[Math.floor(Math.random() * ran.length)];
       return api.sendMessage(r, event.threadID, event.messageID);
     }
 
     if (args[0] === 'remove') {
       const fina = dipto.replace("remove ", "");
-      const respons = await axios.get(`${link}?remove=${fina}&senderID=${uid}`);
+      const respons = await axios.get(`${link}?remove=${fina}`);
       return api.sendMessage(respons.data.message, event.threadID, event.messageID);
     }
 
@@ -48,7 +50,8 @@ module.exports.run = async function ({ api, event, args, Users }) {
         const teachers = await Promise.all(data.map(async (item) => {
           const number = Object.keys(item)[0];
           const value = item[number];
-          const name = await Users.getName(number) || "unknown";
+          const userData = await Users.getData(number);
+          const name = userData.name;
           return { name, value };
         }));
         teachers.sort((a, b) => b.value - a.value);
@@ -82,8 +85,8 @@ module.exports.run = async function ({ api, event, args, Users }) {
         return api.sendMessage('❌ | Invalid format! Use [YourMessage] - [Reply1], [Reply2], [Reply3]... OR remove [YourMessage] OR list OR edit [YourMessage] - [NewReply]', event.threadID, event.messageID);
       }
       const re = await axios.get(`${link}?teach=${final}&reply=${command}&senderID=${uid}`);
-      const name = await Users.getName(re.data.teacher) || "";
-      return api.sendMessage(`✅ Replies added ${re.data.message}\nTeacher: ${name || "unknown"}\nTeachs: ${re.data.teachs}`, event.threadID, event.messageID);
+      const userData = await Users.getData(re.data.teacher);
+      return api.sendMessage(`✅ Replies added ${re.data.message}\nTeacher: ${userData.name}\nTeachs: ${re.data.teachs}`, event.threadID, event.messageID);
     }
 
     if (args[0] === 'teach' && args[1] === 'amar') {
@@ -107,68 +110,15 @@ module.exports.run = async function ({ api, event, args, Users }) {
     }
 
     if (['amar name ki', 'amr nam ki', 'amar nam ki', 'amr name ki'].some(phrase => dipto.includes(phrase))) {
-      const response = await axios.get(`${link}?text=amar name ki&senderID=${uid}&key=intro`);
+      const response = await axios.get(`${link}?text=amar name ki&senderID=${uid}`);
       return api.sendMessage(response.data.reply, event.threadID, event.messageID);
     }
 
-     const a = (await axios.get(`${link}?text=${dipto}&senderID=${uid}&font=1`)).data.reply;
-    return api.sendMessage(a, event.threadID,
-        (error, info) => {
-          global.client.handleReply.push({
-            name: this.config.name,
-            type: "reply",
-            messageID: info.messageID,
-            author: event.senderID,
-            lnk: a,
-            apiUrl: link
-          });
-        }, event.messageID);
+    const response = await axios.get(`${link}?text=${dipto}`);
+    return api.sendMessage(response.data.reply, event.threadID, event.messageID);
 
   } catch (e) {
     console.error('Error in command execution:', e);
-    return api.sendMessage(`Error: ${e.message}`, event.threadID, event.messageID);
+    return api.sendMessage(`error: ${e.message}`, event.threadID, event.messageID);
   }
 };
-
-module.exports.handleReply = async function ({ api, event, handleReply }) {
-try{
-  if (event.type == "message_reply") {
-    const reply = event.body.toLowerCase();
-    if (isNaN(reply)) {
-      const b = (await axios.get(`${await baseApiUrl()}/baby?text=${encodeURIComponent(reply)}&senderID=${event.senderID}&font=1`)).data.reply;
-      await api.sendMessage(b, event.threadID, (error, info) => {
-          global.client.handleReply.push({
-            name: this.config.name,
-            type: "reply",
-            messageID: info.messageID,
-            author: event.senderID,
-            lnk: b
-          });
-        }, event.messageID,
-      )}}
-}catch(err){
-    return api.sendMessage(`Error: ${err.message}`, event.threadID, event.messageID);
-}};
-
-   
-module.exports.handleEvent = async function ({ api, event }) {
-try{
-    const body = event.body ? event.body.toLowerCase() : ""
-    if(body.startsWith("baby") || body.startsWith("bby") || body.startsWith("janu")){
-    	var name2 = await Users.getNameUser(event.senderID);
-        const arr = body.replace(/^\S+\s*/, "")
-      if(!arr) return message.reply(`${name2}Yes 😀, i am here`)
-    const a = (await axios.get(`${await baseApiUrl()}/baby?text=${encodeURIComponent(arr)}&senderID=${event.senderID}&font=1`)).data.reply;     
-        await api.sendMessage(`${name2} ${a}`, event.threadID, (error, info) => {
-          global.client.handleReply.push({
-            name: this.config.name,
-            type: "reply",
-            messageID: info.messageID,
-            author: event.senderID,
-            lnk: a
-          });
-        }, event.messageID,
-      )}
-}catch(err){
-    return api.sendMessage(`Error: ${err.message}`, event.threadID, event.messageID);
-}};
