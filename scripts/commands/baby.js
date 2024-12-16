@@ -26,7 +26,7 @@ module.exports.run = async function ({ api, event, args, Users }) {
     if (!args[0]) {
       const ran = ["Bolo baby", "hum", "type help baby", "type !baby hi"];
       const r = ran[Math.floor(Math.random() * ran.length)];
-      return api.sendMessage(`${namee}, ${r}`, event.threadID, event.messageID);
+      return api.sendMessage(`${name}, ${r}`, event.threadID, event.messageID);
     }
 
     if (args[0] === 'remove') {
