@@ -6,14 +6,14 @@ const baseApiUrl = async () => {
 };
 
 module.exports.config = {
-  name: "rumi",
+  name: "baby",
   version: "6.9.9",
   credits: "dipto",
   cooldowns: 0,
   permission: 0,
   description: "better than all sim simi",
   category: "chat",
-   prefix: false,
+  prefix: false,
   usages: `[anyMessage] OR\nteach [YourMessage] - [Reply1], [Reply2], [Reply3]... OR\nteach [react] [YourMessage] - [react1], [react2], [react3]... OR\nremove [YourMessage] OR\nrm [YourMessage] - [indexNumber] OR\nmsg [YourMessage] OR\nlist OR\nall OR\nedit [YourMessage] - [NewMessage]`,
 };
 
@@ -22,13 +22,11 @@ module.exports.run = async function ({ api, event, args, Users }) {
     const link = `${await baseApiUrl()}/baby`;
     const dipto = args.join(" ").toLowerCase();
     const uid = event.senderID;
-    var id = event.senderID;
-    var name = await Users.getNameUser(event.senderID);
 
     if (!args[0]) {
       const ran = ["Bolo baby", "hum", "type help baby", "type !baby hi"];
       const r = ran[Math.floor(Math.random() * ran.length)];
-      return api.sendMessage(`${namee}, ${ran}`, event.threadID, event.messageID);
+      return api.sendMessage(r, event.threadID, event.messageID);
     }
 
     if (args[0] === 'remove') {
@@ -156,11 +154,10 @@ try{
 module.exports.handleEvent = async function ({ api, event }) {
 try{
     const body = event.body ? event.body.toLowerCase() : ""
-    if(body.startsWith("baby") || body.startsWith("bby") || body.startsWith("janu")){
+    if(body.startsWith("sumi") || body.startsWith("riya") || body.startsWith("বট")){
         const arr = body.replace(/^\S+\s*/, "")
       if(!arr) {
-                                     const ran = ["Bolo baby", "hum", "type help baby", "type !baby hi"];
-      const r = ran[Math.floor(Math.random() * ran.length)]; event.threadID, (error, info) => {
+                                     await api.sendMessage("ট", event.threadID, (error, info) => {
           global.client.handleReply.push({
             name: this.config.name,
             type: "reply",
